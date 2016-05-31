@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MVPSample</string>
+    <string name="make_a_sample_endpoint_call">Make a sample endpoint call</string>
+    <string name="loading">Loading...</string>
+    <string name="internet_off">Unable to connect to network, Please try later.</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
