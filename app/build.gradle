@@ -31,6 +31,8 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.5'
 
     compile 'info.android15.nucleus:nucleus:2.0.6'
+    compile 'info.android15.nucleus:nucleus-support-v7:2.0.6'
+    compile 'info.android15.nucleus:nucleus-support-v4:2.0.6'
 
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.okhttp:logging-interceptor:2.6.0'

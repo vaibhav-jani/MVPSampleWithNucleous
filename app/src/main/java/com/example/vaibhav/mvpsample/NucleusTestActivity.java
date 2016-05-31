@@ -14,14 +14,14 @@ import com.example.vaibhav.mvpsample.presenter.NucleusTestPresenter;
 import java.util.ArrayList;
 
 import nucleus.factory.RequiresPresenter;
-import nucleus.view.NucleusActivity;
+import nucleus.view.NucleusAppCompatActivity;
 import ui.DividerScroll;
 import utils.Logger;
 import utils.Notify;
 import ws.entity.SampleRequest;
 
 @RequiresPresenter(NucleusTestPresenter.class)
-public class NucleusTestActivity extends NucleusActivity<NucleusTestPresenter> {
+public class NucleusTestActivity extends NucleusAppCompatActivity<NucleusTestPresenter> {
 
     private SampleAdapter sampleAdapter;
 
@@ -44,6 +44,7 @@ public class NucleusTestActivity extends NucleusActivity<NucleusTestPresenter> {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        assert recyclerView != null;
         recyclerView.setLayoutManager(layoutManager);
 
         sampleAdapter = new SampleAdapter(this);
@@ -52,6 +53,7 @@ public class NucleusTestActivity extends NucleusActivity<NucleusTestPresenter> {
         DividerScroll.decorate(recyclerView, R.drawable.divider1, false, true);
 
         Button btnStart = (Button) findViewById(R.id.btnStart);
+        assert btnStart != null;
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
