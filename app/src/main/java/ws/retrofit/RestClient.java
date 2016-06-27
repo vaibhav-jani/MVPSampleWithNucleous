@@ -1,8 +1,11 @@
 package ws.retrofit;
 
+import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Response;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import retrofit.GsonConverterFactory;
@@ -29,6 +32,32 @@ public class RestClient {
         Retrofit retrofit = getRetrofitClient(baseUrl);
         ApiInterface restClient = retrofit.create(ApiInterface.class);
         return restClient;
+    }
+
+    public static ApiInterface getProgressiveClient(String baseUrl, final ProgressListener listener) {
+
+        Retrofit retrofit = getRetrofitClient(baseUrl);
+
+        retrofit.client().interceptors().add(new Interceptor() {
+
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+
+                Response originalResponse = chain.proceed(chain.request());
+
+                return originalResponse.newBuilder()
+                        .body(new ProgressResponseBody(originalResponse.body(), listener))
+                        .build();
+            }
+        });
+
+        ApiInterface restClient = retrofit.create(ApiInterface.class);
+        return restClient;
+    }
+
+    public static ApiInterface getProgressiveClient(final ProgressListener listener) {
+
+        return getProgressiveClient(AppUrls.BASE_URL, listener);
     }
 
     private static void setupRestClient() {
